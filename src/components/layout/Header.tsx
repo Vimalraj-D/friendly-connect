@@ -51,18 +51,23 @@ export function Header() {
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-            className="flex flex-col leading-none"
-          >
+          <motion.img
+            src={logo}
+            alt="Garnish & Giggles logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+            whileHover={{ rotate: -8, scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+          />
+          <div className="flex flex-col leading-none">
             <span className="text-lg font-display font-bold text-gradient tracking-tight">
               Garnish & Giggles
             </span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
               Premium Kitchen Wear
             </span>
-          </motion.div>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
