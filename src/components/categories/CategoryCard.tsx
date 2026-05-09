@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import type { Category } from '@/types/database';
-import featureGifts from '@/assets/feature-gifts.jpg';
-import featureParty from '@/assets/feature-party.jpg';
-import featureTreats from '@/assets/feature-treats.jpg';
+import catChefWear from '@/assets/cat-chef-wear.png';
+import catKidsWear from '@/assets/cat-kids-wear.png';
+import catKitchenWear from '@/assets/cat-kitchen-wear.png';
 interface CategoryCardProps {
   category: Category;
   index?: number;
@@ -15,14 +15,16 @@ const PALETTES = [
   { bg: 'from-[hsl(18_15%_75%)] to-[hsl(18_10%_55%)]', text: 'text-white' },
   { bg: 'from-[hsl(25_45%_65%)] to-[hsl(25_45%_45%)]', text: 'text-white' },
 ];
-const IMAGE_MAP: Record<string, string> = {
-  Gifts: featureGifts,
-  Party: featureParty,
-  Treats: featureTreats,
-};
+function pickImage(name: string): string | null {
+  const n = name.toLowerCase();
+  if (n.includes('kid')) return catKidsWear;
+  if (n.includes('chef')) return catChefWear;
+  if (n.includes('kitchen')) return catKitchenWear;
+  return null;
+}
 export function CategoryCard({ category, index = 0 }: CategoryCardProps) {
   const palette = PALETTES[index % PALETTES.length];
-  const src = IMAGE_MAP[category.name] || category.image_url || '/placeholder.svg';
+  const src = pickImage(category.name) || category.image_url || '/placeholder.svg';
 
   return (
     <motion.div
